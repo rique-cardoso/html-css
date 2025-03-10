@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark/Light Mode Switch</title>
+    <style>
+        /* Estilização do switch */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    background-color: #ccc;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.theme-switch.active {
+    background-color: #4CAF50; /* Cor verde para o modo ativo */
+}
+
+.slider {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background-color: #4CAF50; /* Cor verde para o slider */
+    border-radius: 50%;
+    top: 4px;
+    left: 4px;
+    transition: transform 0.4s;
+    opacity: 0.8; /* Transparência para não ocultar os ícones */
+}
+
+.theme-switch.active .slider {
+    transform: translateX(26px); /* Move o círculo para a direita */
+}
+
+/* Estilização dos ícones SVG */
+.icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: white;
+    z-index: 1; /* Ícones acima do slider */
+}
+
+.moon {
+    left: 8px;
+    opacity: 1; /* Sempre visível */
+}
+
+.sun {
+    right: 8px;
+    opacity: 1; /* Sempre visível */
+}
+
+/* Removido: essas regras não são mais necessárias */
+/*
+.theme-switch.active .moon {
+    opacity: 0;
+}
+.theme-switch.active .sun {
+    opacity: 1;
+}
+*/
+
+/* Estilização da página para demonstrar o modo */
+body {
+    background-color: #f0f0f0;
+    transition: background-color 0.4s;
+    padding: 20px;
+}
+
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+    </style>
+</head>
+<body>
+    <div class="theme-switch" id="themeToggle">
+        <div class="slider"></div>
+        <!-- Ícones SVG -->
+        <svg class="icon moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="icon sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </div>
+
+    <script>
+        const toggleSwitch = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Verifica o estado inicial e aplica o modo
+        toggleSwitch.addEventListener('click', function () {
+            this.classList.toggle('active');
+            if (this.classList.contains('active')) {
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+            }
+        });
+
+        // Opcional: Carrega o estado salvo (se desejar persistência)
+        if (localStorage.getItem('theme') === 'dark') {
+            toggleSwitch.classList.add('active');
+            body.classList.add('dark-mode');
+        }
+
+        // Opcional: Salva o estado ao mudar
+        toggleSwitch.addEventListener('click', function () {
+            if (this.classList.contains('active')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.removeItem('theme');
+            }
+        });
+    </script>
+</body>
+</html>
