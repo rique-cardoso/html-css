@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.carousel-container {    
+    position: relative;
+    width: 80%;
+    margin: 50px auto;
+    overflow: hidden;
+}
+
+.carousel {
+    background-color: #696969;
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.card {
+    background-color: rgb(158, 112, 201);
+    height: 100px;
+    min-width: 200px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Corrigido de translateX para translateY */
+    cursor: pointer;
+    background-color: #333; /* Adicionado para visibilidade */
+    color: white; /* Adicionado para contraste */
+    border: none; /* Remove borda padrão */
+    padding: 10px; /* Melhora a área clicável */
+    font-size: 18px; /* Tamanho do ícone */
+    z-index: 1;
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
