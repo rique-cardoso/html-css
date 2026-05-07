@@ -11,6 +11,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: background-color .5s, color .5s;
 }
 
 :root{
@@ -26,7 +27,16 @@ body{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.5em;
   background-color: var(--fundo-principal);
-  color: var(--texto);  
+  color: var(--texto);
+}
+
+body.escuro{
+  --fundo-principal: #222222;
+  --texto: #e0e0e0;
+  --texto-inverso: #fff;
+  --destaque: #5b90cd;
+  --destaque-inverso: #66bbff;
+  --fundo-card: #444444;
 }
 
 header{
